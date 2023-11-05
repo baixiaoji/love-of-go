@@ -1,5 +1,3 @@
-module bookstore
+module github.com/baixiaoji/basic
 
 go 1.20
-
-require github.com/gorilla/mux v1.8.0
