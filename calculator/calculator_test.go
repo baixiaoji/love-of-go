@@ -93,3 +93,35 @@ func TestDivideInvalid(t *testing.T) {
 		t.Fatalf("want error for the invalid input")
 	}
 }
+
+func TestSqrt(t *testing.T) {
+	t.Parallel()
+
+	testCases := []testCase{
+		{4, 2, 2},
+		{9, 3, 3},
+		{81, 9, 9},
+		{0.09, 0.3, 0.3},
+	}
+
+	for _, tc := range testCases {
+		got, err := calculator.Sqrt(tc.a)
+
+		if err != nil {
+			t.Fatalf("want no error for the valid input %v", err)
+		}
+
+		if !closeEnough(got, tc.want, 1e-9) {
+			t.Errorf("Sqrt(%v) = %v, want %v", tc.a, got, tc.want)
+		}
+	}
+}
+
+func TestSqrtInvalid(t *testing.T) {
+	t.Parallel()
+	_, err := calculator.Sqrt(-1)
+
+	if err == nil {
+		t.Fatalf("want error for the invalid input")
+	}
+}
